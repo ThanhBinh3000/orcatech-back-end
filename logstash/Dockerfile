@@ -1,0 +1,4 @@
+ARG ELASTIC_VERSION
+
+# https://www.docker.elastic.co/
+FROM logstash:${ELASTIC_VERSION:-8.16.0}

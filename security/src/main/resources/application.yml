@@ -1,0 +1,61 @@
+# info
+info:
+  app:
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    encoding: @project.build.sourceEncoding@
+    java:
+      version: @java.version@
+
+# Server
+server:
+  tomcat:
+    accept-count: 1000
+
+# Spring
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  sleuth:
+    sampler:
+      probability: 1
+  messages:
+    basename: messages
+    encoding: UTF-8
+  jackson:
+    time-zone: Asia/Ho_Chi_Minh
+    date-format: dd/MM/yyyy HH:mm:ss
+
+# Eureka
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+  instance:
+    health-check-url-path: /actuator/health
+    lease-renewal-interval-in-seconds: 10
+    metadata-map:
+      startup: ${random.int}
+    prefer-ip-address: true
+
+# Management
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+# Logging
+logging:
+  file:
+    path: /app/log
+  logstash:
+    host: localhost
+    port: 5000

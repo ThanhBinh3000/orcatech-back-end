@@ -1,0 +1,12 @@
+# Spring
+spring:
+  application:
+    name: socketio
+  profiles:
+    active: prod
+  cloud:
+    config:
+      uri: http://config-service:2302
+      label: latest
+      username: ENCL(yZ3mdCxWWs6w3Llv/PO1tw==)
+      password: ENCL(A+7wuQ8xUI4h8xcpnbGvew==)

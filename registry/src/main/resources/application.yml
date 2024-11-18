@@ -1,0 +1,45 @@
+# Server
+server:
+  port:
+  tomcat:
+    accept-count: 1000
+
+# Spring
+spring:
+  sleuth:
+    sampler:
+      probability: 1
+
+# Eureka
+eureka:
+  instance:
+    health-check-url-path: /actuator/health
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 2
+  server:
+    eviction-interval-timer-in-ms: 1000
+    response-cache-update-interval-ms: 1000
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+# Management
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+# logging
+#logging:
+#  file:
+#    path: /app/log
+#  logstash:
+#    host: localhost
+#    port: 5000

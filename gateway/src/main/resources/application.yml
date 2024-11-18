@@ -1,0 +1,71 @@
+# Server
+server:
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: true
+  tomcat:
+    accept-count: 10000
+    accesslog:
+      enabled: true
+
+# Spring
+spring:
+  sleuth:
+    sampler:
+      probability: 1
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - OPTIONS
+              - HEAD
+              - GET
+              - PUT
+              - POST
+              - DELETE
+              - PATCH
+            exposedHeaders: "X-Total-Count"
+            allowCredentials: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+    config:
+      fail-fast: true
+
+# Eureka
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+  instance:
+    health-check-url-path: /actuator/health
+    lease-renewal-interval-in-seconds: 10
+    metadata-map:
+      startup: ${random.int}
+    prefer-ip-address: true
+
+# Management
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    tags:
+      application: ${spring.application.name}
+# Logging
+#logging:
+#  file:
+#    path: /app/log
+#  logstash:
+#    host: localhost
+#    port: 5000

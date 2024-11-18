@@ -1,0 +1,65 @@
+# Server
+server:
+  port: 2302
+  tomcat:
+    accept-count: 1000
+
+# Spring native
+spring:
+  application:
+    name: config
+  datasource:
+    url: jdbc:oracle:thin:@database:1521/ORCATECH
+    username: C##ORCATECH
+    password: 123456aA
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  messages:
+    basename: messages
+    encoding: UTF-8
+    jackson:
+      time-zone: Asia/Ho_Chi_Minh
+      date-format: dd/MM/yyyy HH:mm:ss
+
+# Management
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+# security
+security:
+  username: ENC(yZ3mdCxWWs6w3Llv/PO1tw==)
+  password: ENC(A+7wuQ8xUI4h8xcpnbGvew==)
+
+org:
+  springframework:
+    boot:
+      env:
+        secretKey: TranBinh23022000
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path: /actuator/health
+    metadata-map:
+      startup: ${random.int}
+    prefer-ip-address: true
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url:
+      defaultZone: http://ENC(yZ3mdCxWWs6w3Llv/PO1tw==):ENC(/b0rTGiNPLFx7P6Zij2tbw==)@registry-service:8761/eureka/
+
+# Logging
+#logging:
+#  file:
+#    path: /app/log
+#  logstash:
+#    host: localhost
+#    port: 5000
