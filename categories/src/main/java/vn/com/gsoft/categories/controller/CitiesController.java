@@ -24,7 +24,6 @@ public class CitiesController {
     private CitiesService service;
 
     @Operation(summary = "Lookup", description = "Lookup")
-
     @PostMapping(value = PathContains.URL_SEARCH_PAGE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<BaseResponse> colection(@RequestBody CitiesReq objReq) throws Exception {
