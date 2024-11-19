@@ -1,0 +1,35 @@
+C:\kafka
+
+bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+bin\windows\kafka-server-start.bat config\server.properties
+
+bin\windows\kafka-topics.bat --create --topic topic-login --bootstrap-server localhost:9092
+
+bin\windows\kafka-console-producer.bat --topic topic-login --bootstrap-server localhost:9092
+
+bin\windows\kafka-console-consumer.bat --topic topic-login --from-beginning --bootstrap-server localhost:9092
+
+bin\windows\kafka-server-start.bat config\server.properties --override listeners=PLAINTEXT://:9093 --override broker.id=1 --override log.dirs=/tmp/kafka-lpgs-1
+
+bin\windows\kafka-server-start.bat config\server.properties --override listeners=PLAINTEXT://:9094 --override broker.id=2 --override log.dirs=/tmp/kafka-lpgs-2
+
+bin\windows\kafka-topics.bat --create --topic socketio-server-login --bootstrap-server 10.0.16.196:9092 --partitions 1 --replication-factor 1
+
+bin\windows\kafka-topics.bat --delete --topic socketio-server-login --bootstrap-server 10.0.16.196:9092 --partitions 1 --replication-factor 1
+
+bin\windows\kafka-console-producer.bat --topic socketio-server-login --bootstrap-server 10.0.16.196:9092
+
+bin\windows\kafka-console-consumer.bat --topic socketio-server-login --from-beginning --bootstrap-server 10.0.16.196:9092
+
+docker exec -it kafka kafka-topics.sh --create --topic socketio-server-login --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+docker exec -it kafka kafka-topics.sh --list --bootstrap-server localhost:9092
+
+sudo service redis-server start
+
+redis-cli
+
+ping
+
+docker exec -it elasticsearch bin/elasticsearch-setup-passwords interactive
