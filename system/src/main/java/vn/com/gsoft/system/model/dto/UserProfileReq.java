@@ -12,6 +12,7 @@ public class UserProfileReq extends BaseRequest {
     private String username;
     private String password;
     private String fullName;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     private Date birthDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     private Date birthDateFrom;
